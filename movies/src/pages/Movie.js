@@ -1,20 +1,19 @@
-import React from "react"
+import React, { Component } from "react"
 
-const Movie = () => {
-   return(
-     <>
-       <h1>Movies</h1>
-       <ol>
-       <li>Spirited away</li>
-       <li>Tangled</li>
-       <li>Pokemon</li>
-       <li>How to lose a guy in ten days</li>
-       <li>Iron Man 1</li>
-       <li>Iron Man 2</li>
-       <li>Captian America</li>
-       <li>Avengers</li>
-       </ol>
-     </>
-   )
+class Movie extends Component{
+  render(){
+    // Accessing the id from the URL
+    const { id } = this.props.match.params
+    // Using .find() to return the correct object from the data set
+    const movie = this.props.movies.find((movie) => movie.id === parseInt(id))
+    return(
+      <React.Fragment>
+        <div>
+          <h3>{ movie.name }</h3>
+          <p>{ movie.description }</p>
+        </div>
+      </React.Fragment>
+    )
+  }
 }
 export default Movie
